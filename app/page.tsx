@@ -18,7 +18,7 @@ export default function Home() {
           href="/events/new"
           className="rounded-lg bg-accent-strong px-5 py-2.5 font-medium text-white transition hover:opacity-90"
         >
-          Create an event
+          Create an events
         </Link>
 
         <Link
