@@ -7,6 +7,7 @@ import { Badge } from "./ui/badge";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import { Form } from "./ui/form";
 import { createInviteLinkAction } from "@/lib/actions/events";
+import { InviteLinkActions } from "./invite-link-actions";
 
 export async function EventDetailContent({
     userId,
@@ -93,8 +94,11 @@ export async function EventDetailContent({
                 </p>
 
                 {inviteUrl ? (
-                    <div className="rounded-md border-[var(--border)] bg-[var(--surface)] p-3 text-sm">
-                        {inviteUrl}
+                    <div className="space-y-3">
+                        <div className="break-all rounded-md border border-[var(--border)] bg-[var(--surface)] p-3 text-sm">
+                            {inviteUrl}
+                        </div>
+                        <InviteLinkActions inviteUrl={inviteUrl} />
                     </div>
 
                 ) : <p className="text-sm text-[var(--muted-foreground)]">no invite link generated yet</p>}
