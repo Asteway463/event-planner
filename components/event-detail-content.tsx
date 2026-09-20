@@ -50,7 +50,10 @@ export async function EventDetailContent({
         null,
         event.id,
     );
-    const inviteUrl = event.inviteToken ? `${process.env.NEXT_PUBLIC_APP_URL ?? ""}/invite/${event.inviteToken}` : null;
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "");
+    const inviteUrl = event.inviteToken
+        ? `${appUrl ?? ""}/invite/${event.inviteToken}`
+        : null;
     return (<div className="flex flex-col gap-6">
         <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="space-y-2">

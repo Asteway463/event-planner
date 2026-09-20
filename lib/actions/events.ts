@@ -39,7 +39,7 @@ export async function createEventAction(formData: FormData) {
             },
         });
 
-        redirect(`/events/${created.id}`);
+        redirect(`/events/new/${created.id}`);
     } catch (error) {
         // Handle error or rethrow if it's a NEXT_REDIRECT error
         throw error;
@@ -66,7 +66,7 @@ export async function createInviteLinkAction(eventId: string) {
         create: { eventId: owns.id, token },
         update: { token },
     });
-    redirect(`/events/${eventId}`);
+    redirect(`/events/new/${eventId}`);
 }
 
 export async function submitRsvpForToken(formData: FormData) {
