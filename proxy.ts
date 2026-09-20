@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 function isServerActionPost(req: NextRequest) {
     if (req.method !== "POST") return false;
-    const h = req.headers;
-    return Boolean(h.get("Next-Action") ?? h.get("next-action"));
+    const headers = req.headers;
+    return Boolean(headers.get("Next-Action") ?? headers.get("next-action"));
 }
 
-export default async function middleware(req: NextRequest) {
+export default async function proxy(req: NextRequest) {
     if (isServerActionPost(req)) {
         return NextResponse.next();
     }
@@ -16,8 +16,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: [
-
-        "/((?!_next/static|_next/image|favicon.ico|auth/|api/auth/).*)",
-    ],
+    matcher: ["/((?!_next/static|_next/image|favicon.ico|auth/|api/auth/).*)"],
 };

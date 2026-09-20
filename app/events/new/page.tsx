@@ -9,7 +9,7 @@ import { createEventAction } from "@/lib/actions/events";
 
 
 export default async function NewEventPage() {
-    return (<div className="mx-auth w-full max-w-2xl">
+    return (<div className="mx-auto w-full max-w-2xl py-8">
         <Card>
             <CardHeader>
                 <CardTitle>create Event</CardTitle>
@@ -24,10 +24,8 @@ export default async function NewEventPage() {
                     </FormField>
 
                     <FormField>
-                        <Label> location </Label>
-                        <Input id="location" name="location" required placeholder="the optional location"></Input>
-                        <Label htmlFor="description">optional location</Label>
-                        <Textarea id="description" name="description" placeholder="optional details about this event"></Textarea>
+                        <Label htmlFor="location"> location </Label>
+                        <Input id="location" name="location" placeholder="where is it happening?"></Input>
                     </FormField>
 
                     <FormField>
