@@ -1,4 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a Next.js event planner with Neon Auth and Prisma.
+
+## Environment variables
+
+Copy `.env.example` to `.env` for local development and fill in the values from your Neon project. Never commit `.env` or share the cookie secret.
+
+For Vercel, add these variables under **Project Settings > Environment Variables** for the Production environment:
+
+- `DATABASE_URL`
+- `NEON_AUTH_BASE_URL`
+- `NEON_AUTH_COOKIE_SECRET`
+- `NEXT_PUBLIC_APP_URL`
+
+`NEON_AUTH_COOKIE_SECRET` must be a long random value. After adding the variables, redeploy the project. The build runs `prisma generate` automatically before Next.js builds.
 
 ## Getting Started
 
