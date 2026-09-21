@@ -11,8 +11,8 @@ export default async function proxy(req: NextRequest) {
         return NextResponse.next();
     }
 
-    const { auth } = await import("@/lib/auth/server");
-    return auth.middleware({ loginUrl: "/auth/sign-in" })(req);
+    const { getAuth } = await import("@/lib/auth/server");
+    return getAuth().middleware({ loginUrl: "/auth/sign-in" })(req);
 }
 
 export const config = {
