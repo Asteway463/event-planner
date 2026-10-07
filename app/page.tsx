@@ -22,12 +22,12 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button size="lg" asChild>
-                <Link href="/events/new">
-                  Create an event <ArrowRight aria-hidden="true" />
+                <Link href="/auth/sign-up">
+                  Get started <ArrowRight aria-hidden="true" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link href="/dashboard">View dashboard</Link>
+                <Link href="/auth/sign-in">Sign in</Link>
               </Button>
             </div>
             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-[var(--muted-foreground)]">

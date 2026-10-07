@@ -31,8 +31,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4">
               <Link href={"/"} className="text-sm font-semibold tracking-wide">Event Planner</Link>
               <nav className="flex items-center gap-4">
-                <Link href={"/dashboard"}>Dashboard</Link>
-                <UserButton size={"icon"} />
+                <Link href="/auth/sign-in" className="text-sm font-medium">Sign in</Link>
+                <Link href="/auth/sign-up" className="text-sm font-medium">Sign up</Link>
+                <Link href="/dashboard" className="hidden text-sm font-medium sm:inline">Dashboard</Link>
+                <UserButton size="icon" />
               </nav>
             </div>
           </header>

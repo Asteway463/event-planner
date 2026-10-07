@@ -7,6 +7,10 @@ function isServerActionPost(req: NextRequest) {
 }
 
 export default async function proxy(req: NextRequest) {
+    if (req.nextUrl.pathname === "/") {
+        return NextResponse.next();
+    }
+
     if (isServerActionPost(req)) {
         return NextResponse.next();
     }
