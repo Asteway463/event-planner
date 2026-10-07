@@ -20,30 +20,41 @@ function parseCreateEvent(formData: FormData) {
     };
 }
 
-export async function createEventAction(formData: FormData) {
+export type CreateEventState = {
+    error?: string;
+};
+
+export async function createEventAction(
+    _previousState: CreateEventState,
+    formData: FormData,
+): Promise<CreateEventState> {
     const session = await getSession();
     const userId = session.data?.user.id;
     if (!userId) {
         redirect("/auth/sign-in");
     }
-    const input = parseCreateEvent(formData);
 
+    let input: ReturnType<typeof parseCreateEvent>;
     try {
-        const created = await prisma.event.create({
-            data: {
-                ownerUserId: userId,
-                title: input.title,
-                description: input.description,
-                location: input.location,
-                eventDate: input.eventDate ? new Date(input.eventDate) : null,
-            },
-        });
-
-        redirect(`/events/new/${created.id}`);
+        input = parseCreateEvent(formData);
     } catch (error) {
-        // Handle error or rethrow if it's a NEXT_REDIRECT error
+        if (error instanceof Error) {
+            return { error: error.message };
+        }
         throw error;
     }
+
+    const created = await prisma.event.create({
+        data: {
+            ownerUserId: userId,
+            title: input.title,
+            description: input.description,
+            location: input.location,
+            eventDate: input.eventDate ? new Date(input.eventDate) : null,
+        },
+    });
+
+    redirect(`/events/new/${created.id}`);
 }
 
 export async function createInviteLinkAction(eventId: string) {

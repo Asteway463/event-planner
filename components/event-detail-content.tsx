@@ -81,8 +81,7 @@ export async function EventDetailContent({
         <div className="flex flex-wrap gap-2 text-xs">
             <Badge>Going: {event.goingCount}    </Badge>
             <Badge variant="secondary" >{event.maybeCount} maybe</Badge>
-            <Badge variant="secondary" >{event.notGoingCount} {" "}
-                not going: {event.notGoingCount}</Badge>
+            <Badge variant="secondary" >not going: {event.notGoingCount}</Badge>
 
 
         </div>
