@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { CheckIcon } from "lucide-react"
+import { Check } from "@/components/icons"
 import { cn } from "@/lib/utils"
 import { Slot } from "radix-ui"
 
@@ -34,7 +34,7 @@ const Checkbox = React.forwardRef<
         >
             <span className="pointer-events-none flex items-center justify-center w-full h-full">
                 {isChecked ? (
-                    <CheckIcon className="size-4" />
+                    <Check className="size-4" />
                 ) : (
                     <span className="w-full h-full" />
                 )}
