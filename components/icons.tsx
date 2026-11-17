@@ -26,5 +26,5 @@ export { Users } from "lucide-react"
 export { Zap } from "lucide-react"
 export { Menu } from "lucide-react"
 export { X } from "lucide-react"
-export { Google } from "lucide-react"
+// Google icon not available in lucide-react; use inline SVG where needed
 export { Home } from "lucide-react"
