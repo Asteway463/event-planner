@@ -1,9 +1,11 @@
 "use client"
 
+export const dynamic = "force-dynamic"
+
 import { useState } from "react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
-import { Mail, Lock, Google, MailOpen } from "lucide-react"
+import { Mail, Lock, Chrome, MailOpen } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -71,7 +73,7 @@ export default function SignInPage() {
                         disabled={isLoading}
                         className="w-full flex items-center justify-center gap-2 border border-input bg-background hover:bg-muted text-sm font-medium"
                     >
-                        <Google className="size-5" aria-hidden="true" />
+                        <Chrome className="size-5" aria-hidden="true" />
                         Continue with Google
                     </Button>
 

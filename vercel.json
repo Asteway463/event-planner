@@ -4,13 +4,5 @@
   "installCommand": "npm install",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "regions": ["iad1"],
-  "env": {
-    "DATABASE_URL": "@database_url",
-    "NEON_AUTH_BASE_URL": "@neon_auth_base_url",
-    "NEON_AUTH_COOKIE_SECRET": "@neon_auth_cookie_secret",
-    "NEXT_PUBLIC_APP_URL": "@next_public_app_url",
-    "NEON_AUTH_GOOGLE_CLIENT_ID": "@neon_auth_google_client_id",
-    "NEON_AUTH_GOOGLE_CLIENT_SECRET": "@neon_auth_google_client_secret"
-  }
+  "regions": ["iad1"]
 }
