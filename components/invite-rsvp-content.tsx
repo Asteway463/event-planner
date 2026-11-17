@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { submitRsvpForToken } from "@/lib/actions/events"
-import { Calendar, Mail, CheckCircle2, Clock } from "lucide-react"
+import { Calendar, Mail, CheckCircle2, Clock } from "@/components/icons"
 
 export async function InviteRsvpContent({
     token,

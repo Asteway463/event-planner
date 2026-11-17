@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Form } from "@/components/ui/form"
 import { createInviteLinkAction, deleteInviteLinkAction, updateEventAction, deleteEventAction } from "@/lib/actions/events"
 import { InviteLinkActions } from "@/components/invite-link-actions"
-import { Calendar, Users, MapPin, Share2, Copy, Check, Trash2, Edit2, ShieldCheck } from "lucide-react"
+import { Calendar, Users, MapPin, Share2, Copy, Check, Trash2, Edit2, ShieldCheck } from "@/components/icons"
 
 export async function EventDetailContent({
     userId,

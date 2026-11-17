@@ -32,7 +32,7 @@ export async function createEventAction(
     formData: FormData,
 ): Promise<CreateEventState> {
     const session = await getSession()
-    const userId = session.data?.user.id
+    const userId = session.data?.user?.id
     if (!userId) {
         redirect("/auth/sign-in")
     }
@@ -67,7 +67,7 @@ export async function updateEventAction(
     formData: FormData,
 ): Promise<{ error?: string }> {
     const session = await getSession()
-    const userId = session.data?.user.id
+    const userId = session.data?.user?.id
     if (!userId) {
         redirect("/auth/sign-in")
     }
@@ -106,7 +106,7 @@ export async function updateEventAction(
 
 export async function deleteEventAction(eventId: string) {
     const session = await getSession()
-    const userId = session.data?.user.id
+    const userId = session.data?.user?.id
     if (!userId) {
         redirect("/auth/sign-in")
     }
@@ -125,7 +125,7 @@ export async function deleteEventAction(eventId: string) {
 
 export async function createInviteLinkAction(eventId: string) {
     const session = await getSession()
-    const userId = session.data?.user.id
+    const userId = session.data?.user?.id
     if (!userId) {
         redirect("/auth/sign-in")
     }
@@ -149,7 +149,7 @@ export async function createInviteLinkAction(eventId: string) {
 
 export async function deleteInviteLinkAction(eventId: string) {
     const session = await getSession()
-    const userId = session.data?.user.id
+    const userId = session.data?.user?.id
     if (!userId) {
         redirect("/auth/sign-in")
     }
@@ -208,7 +208,7 @@ export async function submitRsvpAuthenticated(
     formData: FormData,
 ) {
     const session = await getSession()
-    const userId = session.data?.user.id
+    const userId = session.data?.user?.id
     if (!userId) {
         redirect("/auth/sign-in")
     }

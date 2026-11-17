@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CreateEventForm } from "./create-event-form"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Calendar, Plus } from "lucide-react"
+import { Calendar, Plus } from "@/components/icons"
 
 export const dynamic = "force-dynamic"
 

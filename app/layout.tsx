@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
 import Link from "next/link"
-import { Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
@@ -26,7 +25,20 @@ export default function RootLayout({
                     <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                         <div className="flex items-center gap-3">
                             <div className="rounded-xl bg-violet-600 p-2">
-                                <Calendar className="size-5 text-white" aria-hidden="true" />
+                                <svg
+                                    className="size-5 text-white"
+                                    aria-hidden="true"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    strokeWidth={2}
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                    />
+                                </svg>
                             </div>
                             <Link href="/" className="text-sm font-semibold tracking-tight">
                                 Event<span className="text-violet-600">Planner</span>

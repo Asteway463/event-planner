@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type { RsvpStatus as PrismaRsvpStatus } from "@/app/generated/prisma/enums"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, Users, CheckCircle2, ArrowRight, Plus } from "lucide-react"
+import { Calendar, Users, CheckCircle2, ArrowRight, Plus } from "@/components/icons"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 export function countByStatus(rsvps: { status: PrismaRsvpStatus }[]) {
