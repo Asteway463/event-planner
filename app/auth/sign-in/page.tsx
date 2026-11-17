@@ -45,17 +45,9 @@ export default function SignInPage() {
         setIsLoading(true)
         setError(null)
         try {
-            const res = await fetch("/api/auth/sign-in/social/google", {
-                method: "GET",
-                redirect: "manual",
-            })
-            // The response will be a redirect to Google OAuth
-            if (res.status === 302 || res.status === 301) {
-                const redirectUrl = res.headers.get("location")
-                if (redirectUrl) {
-                    window.location.href = redirectUrl
-                }
-            }
+            // Navigate directly so the browser processes Set-Cookie headers
+            // from the OAuth initiation response
+            window.location.href = "/api/auth/sign-in/social/google"
         } catch {
             setError("Google sign-in failed. Please try again.")
         } finally {

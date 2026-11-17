@@ -10,17 +10,26 @@ export default async function EventDetailsPage({
     params: Promise<{ eventId: string }>
 }) {
     const { eventId } = await params
-    const session = await getSession()
+    let session
+    try {
+        session = await getSession()
+    } catch {
+        session = { data: { user: null } }
+    }
 
-    if (!session.data?.user) {
+    if (
+        process.env.NEON_AUTH_BASE_URL &&
+        process.env.NEON_AUTH_COOKIE_SECRET &&
+        !session.data?.user
+    ) {
         redirect("/auth/sign-in")
     }
 
     return (
         <EventDetailContent
-            userId={session.data.user.id}
+            userId={session.data?.user?.id ?? ""}
             eventId={eventId}
-            user={session.data.user}
+            user={session.data?.user ?? {}}
         />
     )
 }

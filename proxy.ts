@@ -29,9 +29,14 @@ export default async function proxy(req: NextRequest) {
     }
 
     // Protected routes: require authentication via Neon Auth middleware
-    const { getAuth } = await import("@/lib/auth/server");
-    const auth = await getAuth();
-    return auth.middleware({ loginUrl: "/auth/sign-in" })(req);
+    try {
+        const { getAuth } = await import("@/lib/auth/server");
+        const auth = await getAuth();
+        return auth.middleware({ loginUrl: "/auth/sign-in" })(req);
+    } catch {
+        // Auth not configured — allow request through (will be handled by client-side redirects)
+        return NextResponse.next();
+    }
 }
 
 export const config = {
