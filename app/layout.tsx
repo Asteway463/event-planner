@@ -1,46 +1,66 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Link from "next/link";
-import { NeonAuthUIProvider, UserButton } from '@neondatabase/auth/react';
-import { authClient } from '../lib/auth/client';
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import type { Metadata } from "next"
+import "./globals.css"
+import Link from "next/link"
+import { Calendar } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
-  title: "Event Planner",
-  description: "Create events, share invites, and track RSVPs in one place.",
-};
+    title: "Event Planner",
+    description:
+        "Create events, share invite links, and track RSVPs in one place. Simple, modern event planning for everyone.",
+}
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
-  return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} suppressHydrationWarning
-    >
-      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)]">
-        <NeonAuthUIProvider authClient={authClient} credentials={{ forgotPassword: true }}>
-          <header className="border-b border-[var(--border)] bg-[var(--surface)]/90 backdrop-blur">
-            <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4">
-              <Link href={"/"} className="text-sm font-semibold tracking-wide">Event Planner</Link>
-              <nav className="flex items-center gap-4">
-                <Link href="/auth/sign-in" className="text-sm font-medium">Sign in</Link>
-                <Link href="/auth/sign-up" className="text-sm font-medium">Sign up</Link>
-                <Link href="/dashboard" className="hidden text-sm font-medium sm:inline">Dashboard</Link>
-                <UserButton size="icon" />
-              </nav>
-            </div>
-          </header>
-          <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4">{children}</main>
-        </NeonAuthUIProvider>
-      </body>
-    </html>
-  );
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode
+}) {
+    return (
+        <html
+            lang="en"
+            className="h-full antialiased selection:bg-violet-600 selection:text-white"
+            suppressHydrationWarning
+        >
+            <body className="min-h-full flex flex-col bg-background text-foreground">
+                <header className="border-b border-border bg-background/80 backdrop-blur-md sticky top-0 z-50">
+                    <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+                        <div className="flex items-center gap-3">
+                            <div className="rounded-xl bg-violet-600 p-2">
+                                <Calendar className="size-5 text-white" aria-hidden="true" />
+                            </div>
+                            <Link href="/" className="text-sm font-semibold tracking-tight">
+                                Event<span className="text-violet-600">Planner</span>
+                            </Link>
+                        </div>
+
+                        <nav className="hidden md:flex items-center gap-6">
+                            <Link href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                                Home
+                            </Link>
+                            <Link href="/dashboard" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                                Dashboard
+                            </Link>
+                        </nav>
+
+                        <div className="flex items-center gap-4">
+                            <Link
+                                href="/auth/sign-in"
+                                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                            >
+                                Sign in
+                            </Link>
+                            <Link
+                                href="/auth/sign-up"
+                                className="text-sm font-medium text-white bg-violet-600 hover:bg-violet-700 rounded-xl px-4 py-2 transition-colors"
+                            >
+                                Get started
+                            </Link>
+                        </div>
+                    </div>
+                </header>
+
+                <main className="flex-1">{children}</main>
+            </body>
+        </html>
+    )
 }

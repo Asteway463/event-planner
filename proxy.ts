@@ -7,18 +7,35 @@ function isServerActionPost(req: NextRequest) {
 }
 
 export default async function proxy(req: NextRequest) {
-    if (req.nextUrl.pathname === "/") {
+    const { pathname } = req.nextUrl;
+
+    // Allow root landing page
+    if (pathname === "/") {
         return NextResponse.next();
     }
 
+    // Allow server actions (POST with Next-Action header)
     if (isServerActionPost(req)) {
         return NextResponse.next();
     }
 
+    // Public routes that don't require auth
+    if (
+        pathname.startsWith("/auth") ||
+        pathname.startsWith("/api/auth") ||
+        pathname.startsWith("/invite")
+    ) {
+        return NextResponse.next();
+    }
+
+    // Protected routes: require authentication via Neon Auth middleware
     const { getAuth } = await import("@/lib/auth/server");
-    return getAuth().middleware({ loginUrl: "/auth/sign-in" })(req);
+    const auth = await getAuth();
+    return auth.middleware({ loginUrl: "/auth/sign-in" })(req);
 }
 
 export const config = {
-    matcher: ["/((?!_next/static|_next/image|favicon.ico|auth/|api/auth/).*)"],
+    matcher: [
+        "/((?!_next/static|_next/image|favicon.ico).*)",
+    ],
 };

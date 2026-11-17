@@ -7,10 +7,7 @@ type FormProps = React.ComponentProps<"form">
 
 function Form({ className, ...props }: FormProps) {
     return (
-        <form
-            className={cn("space-y-6", className)}
-            {...props}
-        />
+        <form className={cn("form", className)} {...props} />
     )
 }
 
@@ -19,36 +16,20 @@ type FormFieldProps = {
     className?: string
 }
 
-function FormField({
-    children,
-    className,
-}: FormFieldProps) {
+function FormField({ children, className }: FormFieldProps) {
     return (
-        <div className={cn("space-y-2", className)}>
-            {children}
-        </div>
+        <div className={cn("form-field", className)}>{children}</div>
     )
 }
 
 type FormMessageProps = React.ComponentProps<"p">
 
-function FormMessage({
-    className,
-    children,
-    ...props
-}: FormMessageProps) {
+function FormMessage({ className, children, ...props }: FormMessageProps) {
     return (
-        <p
-            className={cn("text-sm text-muted-foreground", className)}
-            {...props}
-        >
+        <p className={cn("text-sm text-destructive", className)} {...props}>
             {children}
         </p>
     )
 }
 
-export {
-    Form,
-    FormField,
-    FormMessage,
-}
+export { Form, FormField, FormMessage }

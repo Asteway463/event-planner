@@ -1,6 +1,4 @@
-import { createNeonAuth } from "@neondatabase/auth/next/server";
-
-function getAuthConfig() {
+async function getAuthConfig() {
     const baseUrl = process.env.NEON_AUTH_BASE_URL;
     const cookieSecret = process.env.NEON_AUTH_COOKIE_SECRET;
 
@@ -16,11 +14,12 @@ function getAuthConfig() {
     };
 }
 
-export function getAuth() {
-    return createNeonAuth(getAuthConfig());
+export async function getAuth() {
+    const { createNeonAuth } = await import("@neondatabase/auth/next/server");
+    return createNeonAuth(await getAuthConfig());
 }
 
-
-export function getSession() {
-    return getAuth().getSession();
+export async function getSession() {
+    const auth = await getAuth();
+    return auth.getSession();
 }

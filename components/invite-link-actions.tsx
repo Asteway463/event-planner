@@ -1,41 +1,69 @@
-"use client";
+"use client"
 
-import { Check, Copy, Share2 } from "lucide-react";
-import { useState } from "react";
-import { Button } from "./ui/button";
+import { Check, Copy, Share2 } from "lucide-react"
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
 
 export function InviteLinkActions({ inviteUrl }: { inviteUrl: string }) {
-    const [copied, setCopied] = useState(false);
+    const [copied, setCopied] = useState(false)
 
     async function copyInviteLink() {
-        await navigator.clipboard.writeText(inviteUrl);
-        setCopied(true);
-        window.setTimeout(() => setCopied(false), 2000);
+        try {
+            await navigator.clipboard.writeText(inviteUrl)
+            setCopied(true)
+            window.setTimeout(() => setCopied(false), 2000)
+        } catch {
+            // Clipboard access failed
+        }
     }
 
     async function shareInviteLink() {
         if (navigator.share) {
-            await navigator.share({
-                title: "Event invitation",
-                text: "You are invited. Open this link to RSVP:",
-                url: new URL(inviteUrl, window.location.origin).toString(),
-            });
-            return;
+            try {
+                await navigator.share({
+                    title: "Event invitation",
+                    text: "You are invited. Open this link to RSVP:",
+                    url: inviteUrl,
+                })
+                return
+            } catch {
+                // User cancelled share
+            }
         }
-
-        await copyInviteLink();
+        await copyInviteLink()
     }
 
     return (
         <div className="flex flex-wrap gap-2">
-            <Button type="button" variant="secondary" onClick={copyInviteLink}>
-                {copied ? <Check aria-hidden="true" /> : <Copy aria-hidden="true" />}
-                {copied ? "copied" : "copy link"}
+            <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={copyInviteLink}
+                className="flex items-center gap-2"
+            >
+                {copied ? (
+                    <>
+                        <Check className="size-4 text-emerald-600" aria-hidden="true" />
+                        Copied
+                    </>
+                ) : (
+                    <>
+                        <Copy className="size-4" aria-hidden="true" />
+                        Copy link
+                    </>
+                )}
             </Button>
-            <Button type="button" variant="outline" onClick={shareInviteLink}>
-                <Share2 aria-hidden="true" />
-                share
+            <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={shareInviteLink}
+                className="flex items-center gap-2"
+            >
+                <Share2 className="size-4" aria-hidden="true" />
+                Share
             </Button>
         </div>
-    );
+    )
 }
